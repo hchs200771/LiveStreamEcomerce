@@ -1,0 +1,29 @@
+@import 'color.scss';
+
+body {
+  background-color: $body-gray;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.swiper-pagination {
+  position: unset;
+}
+
+footer {
+  text-align: center;
+  color: #fff;
+  background: $primary;
+  padding: 5px 0;
+  b {
+    font-weight: bold;
+    font-size: 13px;
+  }
+}

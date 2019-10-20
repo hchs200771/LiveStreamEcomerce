@@ -1,0 +1,64 @@
+@import 'color.scss';
+
+#all_collections {
+  .collection_block {
+    padding: 35px 0 20px;
+    overflow: hidden;
+    .collection_head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: $title-gray;
+        margin-bottom: 24px;
+      }
+      .see_more {
+        a {
+          color: $basic-red;
+          font-size: 16px;
+          svg {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+    .collection_swiper {
+      padding: 0 5px;
+    }
+    .swiper-container {
+      overflow: visible;
+      .swiper-pagination {
+        margin-top: 25px;
+        .swiper-pagination-bullet-active {
+          background-color: $basic-red;
+        }
+      }
+    }
+    .swiper_product {
+      background: #fff;
+      box-shadow: 0 0 4px rgba(0,0,0, 0.16);
+      .caption {
+        padding: 15px 20px 27px;
+        h2 {
+          font-size: 16px;
+          font-weight: bold;
+          margin: 0;
+        }
+        .product_price {
+          margin: 22px 0;
+          .price {
+            color: $price-red;
+            padding-right: 13px;
+            font-size: 16px;
+          }
+          .origin_price {
+            color: $light-gray;
+          }
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

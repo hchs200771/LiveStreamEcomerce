@@ -1,0 +1,18 @@
+@import 'color.scss';
+
+header {
+  background: $primary;
+  >div {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      color: #fff;
+      font-weight: bold;
+    }
+    .cart {
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
