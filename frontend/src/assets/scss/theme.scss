@@ -20,6 +20,9 @@ a {
     height: 81px;
     background: rgba(132, 132, 132, 0.56);
     top: 40%;
+    &.swiper-button-disabled {
+      pointer-events: unset;
+    }
     &::before {
       position: absolute;
       content: "";
