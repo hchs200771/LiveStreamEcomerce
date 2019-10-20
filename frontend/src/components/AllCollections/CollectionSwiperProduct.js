@@ -6,11 +6,12 @@ const CollectionSwiperProduct = (props) => {
     name,
     price,
     originPrice,
+    productHandle,
   } = props;
   return (
     <div className="swiper_product swiper-slide">
       <div className="product_image">
-        <img src={imgUrl} />
+        <a href={productHandle}><img src={imgUrl} /></a>
       </div>
       <div className="caption">
         <div className="product_title">

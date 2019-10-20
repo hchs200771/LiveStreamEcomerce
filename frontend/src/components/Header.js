@@ -11,6 +11,7 @@ const Header = () => {
           <div className="cart">
             <a href="#">
               <FontAwesomeIcon icon="shopping-cart" />
+              <span>0</span>
             </a>
           </div>
         </div>
