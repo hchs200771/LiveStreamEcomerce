@@ -7,7 +7,7 @@ from ecommerce import app_config
 from ecommerce.exception import *
 
 log = logging.getLogger(__name__)
-api = flask_restplus.Api(version='1.0', title='Ecommerce API', description='Ecommerce API Document <style>.models {display: none !important}</style>')
+api = flask_restplus.Api(version='1.0', title='LiveStreamEcommerce API', description='LiveStreamEcommerce API Document <style>.models {display: none !important}</style>')
 
 
 @api.errorhandler
