@@ -1,0 +1,17 @@
+version: '3'
+
+# networks:
+#   ecommerce-net:
+#     driver: bridge
+
+services:
+  database:
+    image: postgres:11.5
+    container_name: postgresql-db
+    restart: on-failure
+    environment:
+      POSTGRES_PASSWORD: postgres
+    # networks:
+    #   - ecommerce-net
+    ports:
+      - "5432:5432"
