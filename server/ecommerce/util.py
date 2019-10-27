@@ -1,5 +1,6 @@
 import logging
 from enum import Enum
+from datetime import datetime
 
 
 class BaseEnum(Enum):
@@ -35,3 +36,8 @@ def log_scope(log):
         d_f.__doc__ = f.__doc__
         return d_f
     return outer_d_f
+
+
+def current_time():
+    date_time = datetime.now()
+    return date_time.strftime('%Y-%m-%d %H:%M:%S')
