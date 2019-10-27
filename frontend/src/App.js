@@ -4,7 +4,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faShoppingCart,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faCartPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './assets/scss/theme.scss';
@@ -13,7 +14,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AllCollections from './views/AllCollections';
 
-library.add(faShoppingCart,faAngleDoubleRight);
+library.add(
+  faShoppingCart,
+  faAngleDoubleRight,
+  faCartPlus
+);
 
 function App() {
   return (

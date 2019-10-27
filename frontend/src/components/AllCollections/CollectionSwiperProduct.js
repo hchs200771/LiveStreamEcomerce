@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CollectionSwiperProduct = (props) => {
   const {
@@ -20,6 +21,9 @@ const CollectionSwiperProduct = (props) => {
         <div className="product_price">
           <b className="price">特價 ${price}</b>
           <span className="origin_price">原價 ${originPrice}</span>
+        </div>
+        <div class="product_btn">
+          <button class="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
         </div>
       </div>
     </div>
