@@ -1,7 +1,6 @@
 import React from 'react';
 import CollectionSwiper from './CollectionSwiper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../assets/scss/all_collections.scss';
 
 const CollectionBlock = (props) => {
   const {

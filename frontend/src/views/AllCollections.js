@@ -1,6 +1,8 @@
 import React from 'react';
 import CollectionBlock from '../components/AllCollections/CollectionBlock';
 
+import '../assets/scss/all_collections.scss';
+
 const CollectionData = [
   {
     id: 'id1',
