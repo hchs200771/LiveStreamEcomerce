@@ -4,8 +4,16 @@ CONFIG = None
 
 class Config:
 
+    SWAGGER_UI_DOC_EXPANSION = 'list'
+    FLASK_ADMIN_SWATCH = 'cerulean'
     SERVER_HOST = '0.0.0.0'
-    SERVER_PORT = 8000
+    SERVER_PORT = 5604
+
+    POSTGRES_DEFAULT = 'postgres'
+    POSTGRES_HOST = SERVER_HOST
+    POSTGRES_PORT = 5432
+    POSTGRES_USER = 'postgres'
+    POSTGRES_PASSWORD = 'postgres'
 
 
 class ProductionConfig(Config):
@@ -18,7 +26,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
     TEST = False
     PROD = False
-    SWAGGER_UI_DOC_EXPANSION = 'list'
 
 
 class UnitTestConfig(Config):

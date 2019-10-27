@@ -13,7 +13,7 @@ product_query = api.model('product_query', {
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
     'price': fields.Integer(required=True, description='product price', example=999),
-    'category': fields.Nested(abstract_model.resource_common, allow_null=True)
+    'category_collection': fields.List(fields.Nested(abstract_model.resource_common, allow_null=True))
 })
 
 product_id = api.inherit('product_id', abstract_model.id)
@@ -23,7 +23,7 @@ product_create = api.model('product_create', {
     'brief': fields.String(description='product brief', example='a car'),
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
-    'category': fields.Integer(description='category id', example=1),
+    'category_id_collection': fields.List(fields.Integer(description='category id', example=1)),
     'price': fields.Integer(required=True, description='product price', example=999)
 })
 
@@ -32,6 +32,6 @@ product_reapply = api.model('product_reapply', {
     'brief': fields.String(description='product brief', example='a car'),
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(description='product image url', example='https://image_url.jpg'),
-    'category': fields.Integer(description='category id', example=1),
+    'category_id_collection': fields.List(fields.Integer(description='category id', example=1)),
     'price': fields.Integer(description='product price', example=999)
 })

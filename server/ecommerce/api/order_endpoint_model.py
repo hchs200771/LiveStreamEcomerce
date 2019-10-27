@@ -16,7 +16,7 @@ order_query = api.model('order_query', {
     'payment_type': fields.String(required=True, enum=OrderDO.PaymentType.to_list(), description='付款方式'),
     'total': fields.Integer(required=True, description='total price', example=999),
     'status': fields.String(required=True, enum=OrderDO.OrderStatus.to_list(), description='訂單狀態'),
-    'time': fields.DateTime(required=True, description='order time'),
+    'created_date': fields.DateTime(required=True, description='order time'),
     'product_collection': fields.List(fields.Nested(abstract_model.resource_common))
 })
 
@@ -37,5 +37,6 @@ order_reapply = api.model('order_reapply', {
     'cust_email': fields.String(description='customer email', example='example@gmail.com'),
     'cust_addr': fields.String(description='customer address', example='Taipei ...'),
     'payment_type': fields.String(enum=OrderDO.PaymentType.to_list(), description='付款方式'),
+    'status': fields.String(enum=OrderDO.OrderStatus.to_list(), description='訂單狀態'),
     'product_id_collection': fields.List(fields.Integer(description='product id'))
 })
