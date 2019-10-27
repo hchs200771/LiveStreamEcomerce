@@ -4,7 +4,8 @@ from playhouse.postgres_ext import *
 from ecommerce import util
 from ecommerce.persistence import model_common
 
-__all__ = []
+__all__ = ['database_proxy', 'DB_NAME', 'Category', 'Product', 'Product_Category',
+           'Order', 'Order_Product', 'open_connection', 'close_connection', 'init']
 
 log = logging.getLogger(__name__)
 database_proxy = Proxy()
@@ -55,10 +56,10 @@ class Product_Category(BaseModel):
 
 class Order(BaseModel):
     id = AutoField()
-    customer_name = CharField()
-    customer_phone = CharField()
-    customer_addr = CharField()
-    customer_email = CharField()
+    cust_name = CharField()
+    cust_phone = CharField()
+    cust_addr = CharField()
+    cust_email = CharField()
     payment_type = CharField(index=True)
     total = IntegerField(index=True)
     status = CharField(index=True, constraints=[Check('status IN (\'Unpaid\', \'Unshipped\', \'Shipped\', \'Complete\')')])

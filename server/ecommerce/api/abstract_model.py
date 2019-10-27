@@ -11,6 +11,10 @@ id = api.model('id', {
     'id': fields.Integer(required=False, description='abstract resource id'),
 })
 
+id_collection = api.model('id_collection', {
+    'id_collection': fields.List(fields.Integer, required=True, description='abstract resource id'),
+})
+
 resource_common = api.model('resource_common', {
     'id': fields.Integer(required=True, description='resource id'),
     'name': fields.String(required=True, description='resource name'),
