@@ -1,6 +1,6 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
-import CollectionSwiperProduct from './CollectionSwiperProduct';
+import CollectionProduct from '../CollectionProduct';
 
 const CollectionSwiper = (props) => {
   const {
@@ -8,7 +8,7 @@ const CollectionSwiper = (props) => {
   } = props;
   const swiperProducts = productsData.map((swiperProduct) => {
     return (
-      <CollectionSwiperProduct
+      <CollectionProduct
         key={swiperProduct.id}
         imgUrl={swiperProduct.imgUrl}
         name={swiperProduct.name}

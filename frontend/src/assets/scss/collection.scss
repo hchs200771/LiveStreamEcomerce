@@ -1,0 +1,62 @@
+@import 'color.scss';
+
+#collection {
+  .collection_banner {
+    margin: 27px 0;
+  }
+  .row {
+    .head {
+      background: $dark-blue;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 3px 20px;
+      margin-bottom: 15px;
+    }
+    .side_menu {
+      .head {
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 24px 22px;
+        background: #fff;
+        li {
+          margin-bottom: 20px;
+          position: relative;
+          a {
+            color: $title-gray;
+            border-bottom: 1px dashed $title-gray;
+            padding: 0 20px 8px;
+            font-size: 16px;
+            display: block;
+            &:before {
+              content: "";
+              display: inline-block;
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background: $title-gray;
+              position: absolute;
+              left: 5px;
+              top: 10px;
+            }
+            &.active, &:hover {
+              color: $basic-red;
+              border-color: $basic-red;
+              &:before {
+                background: $basic-red;
+              }
+            }
+          }
+        }
+      }
+    }
+    .products {
+      >div {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

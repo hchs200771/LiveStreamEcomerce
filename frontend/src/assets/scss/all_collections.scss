@@ -36,50 +36,5 @@
         }
       }
     }
-    .swiper_product {
-      background: #fff;
-      box-shadow: 0 0 4px rgba(0,0,0, 0.16);
-      transition: all .3s;
-      .caption {
-        padding: 15px 20px 27px;
-        h2 {
-          font-size: 16px;
-          font-weight: bold;
-          margin: 0;
-        }
-        .product_price {
-          margin: 22px 0;
-          .price {
-            color: $price-red;
-            padding-right: 13px;
-            font-size: 16px;
-          }
-          .origin_price {
-            color: $light-gray;
-          }
-          font-size: 13px;
-        }
-        .product_btn {
-          .add_to_cart {
-            color: #fff;
-            background: $btn-yellow;
-            padding: 5px 20px;
-            border-color: $btn-yellow;
-            transition: all .3s;
-            width: 100%;
-            svg {
-              margin-right: 10px;
-            }
-            &:hover {
-              background: #fff;
-              color: $btn-yellow;
-            }
-          }
-        }
-      }
-      &:hover {
-        box-shadow: 0 0 10px rgba(0,0,0, 0.2);
-      }
-    }
   }
 }

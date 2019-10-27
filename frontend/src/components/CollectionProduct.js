@@ -1,7 +1,8 @@
 import React from 'react';
+import '../assets/scss/product.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CollectionSwiperProduct = (props) => {
+const CollectionProduct = (props) => {
   const {
     imgUrl,
     name,
@@ -10,7 +11,7 @@ const CollectionSwiperProduct = (props) => {
     productHandle,
   } = props;
   return (
-    <div className="swiper_product swiper-slide">
+    <div className="product swiper-slide">
       <div className="product_image">
         <a href={productHandle}><img src={imgUrl} /></a>
       </div>
@@ -30,4 +31,4 @@ const CollectionSwiperProduct = (props) => {
   );
 };
 
-export default CollectionSwiperProduct;
+export default CollectionProduct;

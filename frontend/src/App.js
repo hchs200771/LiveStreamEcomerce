@@ -13,6 +13,7 @@ import './assets/scss/theme.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AllCollections from './views/AllCollections';
+import Collection from './views/Collection';
 
 library.add(
   faShoppingCart,
@@ -27,6 +28,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={AllCollections} />
+          <Route path="/collection/:id" component={Collection} />
         </Switch>
         <Footer />
       </div>
