@@ -1,0 +1,66 @@
+@import 'color.scss';
+
+body {
+  background-color: $body-gray;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.swiper-container {
+  position: relative;
+  .swiper-button-prev, .swiper-button-next {
+    width: 38px;
+    height: 81px;
+    background: rgba(132, 132, 132, 0.56);
+    top: 40%;
+    &.swiper-button-disabled {
+      pointer-events: unset;
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: solid #fff;
+      top: 42%;
+    }
+  }
+  .swiper-button-prev {
+    left: 0;
+    &::before {
+      border-width: 3px 0 0 3px;
+      transform: rotate(-45deg);
+      left: 40%;
+    }
+  }
+  .swiper-button-next {
+    right: 0;
+    &::before {
+      border-width: 3px 3px 0 0;
+      transform: rotate(45deg);
+      right: 40%;
+    }
+  }
+  .swiper-pagination {
+    position: unset;
+  }
+}
+
+footer {
+  text-align: center;
+  color: #fff;
+  background: $primary;
+  padding: 5px 0;
+  b {
+    font-weight: bold;
+    font-size: 13px;
+  }
+}
