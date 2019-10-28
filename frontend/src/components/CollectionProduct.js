@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/scss/product.scss'
+import '../assets/scss/collection_product.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CollectionProduct = (props) => {
@@ -8,12 +8,12 @@ const CollectionProduct = (props) => {
     name,
     price,
     originPrice,
-    productHandle,
+    id,
   } = props;
   return (
     <div className="product swiper-slide">
       <div className="product_image">
-        <a href={productHandle}><img src={imgUrl} /></a>
+        <a href={'/products/' + id}><img src={imgUrl} /></a>
       </div>
       <div className="caption">
         <div className="product_title">

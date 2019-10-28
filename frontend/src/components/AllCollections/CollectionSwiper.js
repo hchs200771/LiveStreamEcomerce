@@ -14,7 +14,7 @@ const CollectionSwiper = (props) => {
         name={swiperProduct.name}
         price={swiperProduct.price}
         originPrice={swiperProduct.originPrice}
-        productHandle={swiperProduct.productHandle}
+        id={swiperProduct.id}
       />
     );
   });

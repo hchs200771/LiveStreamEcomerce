@@ -119,7 +119,7 @@ const Collection = (props) => {
           name={product.name}
           price={product.price}
           originPrice={product.originPrice}
-          productHandle={product.productHandle}
+          id={product.id}
         />
       </div>
     );

@@ -22,7 +22,6 @@ const CollectionData = [
         price: 1000,
         originPrice: 2000,
         imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
-        productHandle: '001',
       },
       {
         id: 3,
@@ -30,7 +29,6 @@ const CollectionData = [
         price: 1000,
         originPrice: 2000,
         imgUrl: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
-        productHandle: '002',
       },
       {
         id: 4,
@@ -38,7 +36,6 @@ const CollectionData = [
         price: 1000,
         originPrice: 2000,
         imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
-        productHandle: '003',
       },
       {
         id: 5,
@@ -46,7 +43,6 @@ const CollectionData = [
         price: 1000,
         originPrice: 2000,
         imgUrl: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
-        productHandle: '004',
       },
       {
         id: 6,
@@ -54,7 +50,6 @@ const CollectionData = [
         price: 1000,
         originPrice: 2000,
         imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
-        productHandle: '005',
       },
     ],
   },
