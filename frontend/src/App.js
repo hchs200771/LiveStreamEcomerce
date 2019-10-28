@@ -4,7 +4,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faShoppingCart,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faCartPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './assets/scss/theme.scss';
@@ -12,8 +13,13 @@ import './assets/scss/theme.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AllCollections from './views/AllCollections';
+import Collection from './views/Collection';
 
-library.add(faShoppingCart,faAngleDoubleRight);
+library.add(
+  faShoppingCart,
+  faAngleDoubleRight,
+  faCartPlus
+);
 
 function App() {
   return (
@@ -22,6 +28,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={AllCollections} />
+          <Route path="/collection/:id" component={Collection} />
         </Switch>
         <Footer />
       </div>

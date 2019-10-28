@@ -1,6 +1,8 @@
 import React from 'react';
+import '../assets/scss/product.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CollectionSwiperProduct = (props) => {
+const CollectionProduct = (props) => {
   const {
     imgUrl,
     name,
@@ -9,7 +11,7 @@ const CollectionSwiperProduct = (props) => {
     productHandle,
   } = props;
   return (
-    <div className="swiper_product swiper-slide">
+    <div className="product swiper-slide">
       <div className="product_image">
         <a href={productHandle}><img src={imgUrl} /></a>
       </div>
@@ -21,9 +23,12 @@ const CollectionSwiperProduct = (props) => {
           <b className="price">特價 ${price}</b>
           <span className="origin_price">原價 ${originPrice}</span>
         </div>
+        <div class="product_btn">
+          <button class="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default CollectionSwiperProduct;
+export default CollectionProduct;

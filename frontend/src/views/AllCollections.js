@@ -1,11 +1,12 @@
 import React from 'react';
 import CollectionBlock from '../components/AllCollections/CollectionBlock';
 
+import '../assets/scss/all_collections.scss';
+
 const CollectionData = [
   {
-    id: 'id1',
+    id: '1',
     title: '英雄聯盟',
-    collectionUrl: '1',
     productsData: [
       {
         id: 1,
@@ -58,9 +59,8 @@ const CollectionData = [
     ],
   },
   {
-    id: 'id2',
+    id: '2',
     title: '漫威系列',
-    collectionUrl: '2',
     productsData: [
       {
         id: 1,
