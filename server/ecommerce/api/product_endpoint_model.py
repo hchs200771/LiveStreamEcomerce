@@ -6,15 +6,7 @@ from ecommerce.api.api_proxy import api
 
 product_filter = abstract_model.page_filter.copy()
 
-product_query = api.model('product_query', {
-    'id': fields.Integer(required=True, description='product id', example=1),
-    'name': fields.String(required=True, description='product name', example='BMW'),
-    'brief': fields.String(description='product brief', example='a car'),
-    'description': fields.String(description='product description', example='This is a car.'),
-    'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
-    'price': fields.Integer(required=True, description='product price', example=999),
-    'category_collection': fields.List(fields.Nested(abstract_model.resource_common, allow_null=True))
-})
+product_query = api.inherit('product_query', abstract_model.product_with_all)
 
 product_id = api.inherit('product_id', abstract_model.id)
 

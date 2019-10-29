@@ -19,3 +19,13 @@ resource_common = api.model('resource_common', {
     'id': fields.Integer(required=True, description='resource id'),
     'name': fields.String(required=True, description='resource name'),
 })
+
+product_with_all = api.model('product_with_all', {
+    'id': fields.Integer(required=True, description='product id', example=1),
+    'name': fields.String(required=True, description='product name', example='BMW'),
+    'brief': fields.String(description='product brief', example='a car'),
+    'description': fields.String(description='product description', example='This is a car.'),
+    'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
+    'price': fields.Integer(required=True, description='product price', example=999),
+    'category_collection': fields.List(fields.Nested(resource_common, allow_null=True))
+})

@@ -73,9 +73,10 @@ class Order(BaseModel):
 class Order_Product(BaseModel):
     order = ForeignKeyField(Order, on_delete='CASCADE')
     product = ForeignKeyField(Product, on_delete='CASCADE')
+    quantity = IntegerField()
 
     def __str__(self):
-        return '<order:{} product:{}>'.format(self.order_id, self.product_id)
+        return '<order:{} product:{} quantity:{}>'.format(self.order_id, self.product_id, self.quantity)
 
     class Meta:
         indexes = (

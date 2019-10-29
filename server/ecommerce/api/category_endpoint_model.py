@@ -13,3 +13,5 @@ category_id = api.inherit('category_id', abstract_model.id)
 category_create = api.model('category_create', {
     'name': fields.String(required=True, description='category name')
 })
+
+category_product_query = api.inherit('category_product_query', abstract_model.product_with_all)

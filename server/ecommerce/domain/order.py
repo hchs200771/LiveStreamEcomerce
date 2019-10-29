@@ -21,22 +21,22 @@ class OrderStatus(util.BaseEnum):
 
 
 @util.log_scope(log)
-def create(cust_name, cust_phone, cust_email, cust_addr, payment_type, product_id_collection):
+def create(cust_name, cust_phone, cust_email, cust_addr, payment_type, product_collection):
     if payment_type not in PaymentType.to_list():
         raise DataValidationError('payment type error')
-    if not product_id_collection:
+    if not product_collection:
         raise BusinessRuleValidationError('no product entered')
 
     total = 0
     product_list = []
-    for product_id in product_id_collection:
+    for order_product in product_collection:
         try:
-            product = Product.get(Product.id == product_id)
+            product = Product.get(Product.id == order_product['id'])
         except DoesNotExist:
-            raise DataValidationError('product id: {}'.format(product_id))
+            raise DataValidationError('product id: {}'.format(order_product['id']))
 
-        total += product.price
-        product_list.append(product)
+        total += product.price * order_product['quantity']
+        product_list.append({'product': product, 'quantity': order_product['quantity']})
 
     with database_proxy.atomic():
         order = Order.create(
@@ -50,8 +50,8 @@ def create(cust_name, cust_phone, cust_email, cust_addr, payment_type, product_i
             created_date=util.current_time()
         )
 
-        for product in product_list:
-            Order_Product.create(order=order, product=product)
+        for p in product_list:
+            Order_Product.create(order=order, product=p['product'], quantity=p['quantity'])
 
     return order
 
@@ -69,7 +69,7 @@ def find(page_number=1, items_per_page=25):
 
         product_collection = []
         for q in list(op_query):
-            product_collection.append({'id': q.product.id, 'name': q.product.name})
+            product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
 
         item = {}
         item['id'] = order.id
@@ -98,7 +98,7 @@ def find_one(order_id):
 
     product_collection = []
     for q in list(op_query):
-        product_collection.append({'id': q.product.id, 'name': q.product.name})
+        product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
 
     item = {}
     item['id'] = order.id
@@ -116,7 +116,7 @@ def find_one(order_id):
 
 
 @util.log_scope(log)
-def do_update(order_id, cust_name='', cust_phone='', cust_email='', cust_addr='', payment_type='', status='', product_id_collection=[]):
+def do_update(order_id, cust_name='', cust_phone='', cust_email='', cust_addr='', payment_type='', status='', product_collection=[]):
     try:
         order = Order.get(Order.id == order_id)
     except DoesNotExist:
@@ -148,16 +148,20 @@ def do_update(order_id, cust_name='', cust_phone='', cust_email='', cust_addr=''
             if status not in OrderStatus.to_list():
                 raise DataValidationError('order status error')
             order.status = status
-        if product_id_collection:
+        if product_collection:
             Order_Product.delete().where(Order_Product.order == order.id).execute()
 
-            for product_id in product_id_collection:
+            total = 0
+            for order_product in product_collection:
                 try:
-                    product = Product.get(Product.id == product_id)
+                    product = Product.get(Product.id == order_product['id'])
                 except DoesNotExist:
-                    raise DataValidationError('product id: {}'.format(product_id))
+                    raise DataValidationError('product id: {}'.format(order_product['id']))
 
-                Order_Product.create(order=order, product=product)
+                total += product.price * order_product['quantity']
+                Order_Product.create(order=order, product=product, quantity=order_product['quantity'])
+
+            order.total = total
 
         order.modified_date = util.current_time()
         order.save()
