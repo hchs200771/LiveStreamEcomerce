@@ -53,7 +53,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾3',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
+    imgUrl: 'http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg',
     productHandle: '002',
     category_collection: [
       {
