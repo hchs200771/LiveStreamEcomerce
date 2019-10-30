@@ -13,7 +13,13 @@ const CollectionProduct = (props) => {
   return (
     <div className="product swiper-slide">
       <div className="product_image">
-        <a href={'/products/' + id}><img src={imgUrl} /></a>
+        <img src={imgUrl} />
+        <a href={'/products/' + id}>
+          <span>
+            <FontAwesomeIcon icon="search" />
+            查看商品
+          </span>
+        </a>
       </div>
       <div className="caption">
         <div className="product_title">

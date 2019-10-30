@@ -4,6 +4,30 @@
   background: #fff;
   box-shadow: 0 0 4px rgba(0,0,0, 0.16);
   transition: all .3s;
+  .product_image {
+    position: relative;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: all .3s;
+      font-size: 22px;
+      &:hover {
+        opacity: 1;
+      }
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
   .caption {
     padding: 15px 20px 27px;
     h2 {

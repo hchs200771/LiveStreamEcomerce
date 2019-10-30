@@ -6,6 +6,7 @@ import {
   faShoppingCart,
   faAngleDoubleRight,
   faCartPlus,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './assets/scss/theme.scss';
@@ -19,7 +20,8 @@ import Product from './views/Product';
 library.add(
   faShoppingCart,
   faAngleDoubleRight,
-  faCartPlus
+  faCartPlus,
+  faSearch,
 );
 
 function App() {
