@@ -2,6 +2,14 @@
 
 #product {
   margin: 38px 0 50px;
+  h2 {
+    margin-bottom: 24px;
+    font-size: 22px;
+    color: $title-dark-gray;
+    border-left: 3px solid $dark-blue;
+    position: relative;
+    padding-left: 10px;
+  }
   .product_info {
     .product_title {
       h1 {
@@ -74,13 +82,9 @@
   }
   .product_description {
     margin-top: 38px;
-    .title {
-      h2 {
-        margin-bottom: 24px;
-        font-size: 30px;
-        color: $title-dark-gray;
-      }
-    }
+    border-bottom: 1px solid $bright-gray;
+    margin-bottom: 50px;
+    padding-bottom: 15px;
     .content {
       p {
         font-size: 16px;

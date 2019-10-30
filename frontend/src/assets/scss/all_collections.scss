@@ -29,12 +29,6 @@
     }
     .swiper-container {
       overflow: visible;
-      .swiper-pagination {
-        margin-top: 25px;
-        .swiper-pagination-bullet-active {
-          background-color: $basic-red;
-        }
-      }
     }
   }
 }
