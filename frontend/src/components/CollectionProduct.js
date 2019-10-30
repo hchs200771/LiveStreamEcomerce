@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CollectionProduct = (props) => {
   const {
-    imgUrl,
+    image,
     name,
     price,
     originPrice,
@@ -13,7 +13,7 @@ const CollectionProduct = (props) => {
   return (
     <div className="product swiper-slide">
       <div className="product_image">
-        <img src={imgUrl} />
+        <img src={image} />
         <a href={'/products/' + id}>
           <span>
             <FontAwesomeIcon icon="search" />
@@ -29,8 +29,8 @@ const CollectionProduct = (props) => {
           <b className="price">特價 ${price}</b>
           <span className="origin_price">原價 ${originPrice}</span>
         </div>
-        <div class="product_btn">
-          <button class="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+        <div className="product_btn">
+          <button className="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
         </div>
       </div>
     </div>
