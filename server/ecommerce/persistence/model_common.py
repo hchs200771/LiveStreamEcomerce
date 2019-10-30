@@ -14,8 +14,9 @@ log = logging.getLogger(__name__)
 @util.log_scope(log)
 def is_database_exist(dbname):
     con = psycopg2.connect(
-        dbname=app_config.CONFIG.POSTGRES_DEFAULT,
+        dbname=dbname,
         host=app_config.CONFIG.POSTGRES_HOST,
+        port=app_config.CONFIG.POSTGRES_PORT,
         user=app_config.CONFIG.POSTGRES_USER,
         password=app_config.CONFIG.POSTGRES_PASSWORD
     )
@@ -26,9 +27,24 @@ def is_database_exist(dbname):
 
 
 @util.log_scope(log)
+def is_table_exist(dbname, table_name):
+    con = psycopg2.connect(
+        dbname=dbname,
+        host=app_config.CONFIG.POSTGRES_HOST,
+        port=app_config.CONFIG.POSTGRES_PORT,
+        user=app_config.CONFIG.POSTGRES_USER,
+        password=app_config.CONFIG.POSTGRES_PASSWORD
+    )
+    cur = con.cursor()
+    cur.execute("select * from information_schema.tables where table_name=%s", (table_name,))
+
+    return True if bool(cur.rowcount) else False
+
+
+@util.log_scope(log)
 def reset_database(dbname):
     con = psycopg2.connect(
-        dbname=app_config.CONFIG.POSTGRES_DEFAULT,
+        dbname=dbname,
         host=app_config.CONFIG.POSTGRES_HOST,
         port=app_config.CONFIG.POSTGRES_PORT,
         user=app_config.CONFIG.POSTGRES_USER,
@@ -71,7 +87,7 @@ def generate_db_object(dbname):
 @util.log_scope(log)
 def create_model(module_name, dbname):
     module_obj = sys.modules[module_name]
-    reset_database(dbname)
+    # reset_database(dbname)
     db_obj = generate_db_object(dbname)
     module_obj.database_proxy.initialize(db_obj)
     db_obj.create_tables(get_model_tables(module_obj), safe=True)
