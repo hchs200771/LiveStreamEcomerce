@@ -2,6 +2,7 @@ import logging
 import peewee
 from playhouse.postgres_ext import *
 from ecommerce import util
+from ecommerce import app_config
 from ecommerce.persistence import model_common
 
 __all__ = ['database_proxy', 'DB_NAME', 'Category', 'Product', 'Product_Category',
@@ -93,10 +94,11 @@ def close_connection():
 
 
 @util.log_scope(log)
-def init(createdb=False):
-    if (not model_common.is_database_exist(DB_NAME)) or createdb:
-        model_common.create_model(__name__, DB_NAME)
+def init():
+    # TODO reset all table
+    if not model_common.is_table_exist(app_config.CONFIG.POSTGRES_DBNAME, 'category'):
+        model_common.create_model(__name__, app_config.CONFIG.POSTGRES_DBNAME)
     else:
-        model_common.load_model(__name__, DB_NAME)
+        model_common.load_model(__name__, app_config.CONFIG.POSTGRES_DBNAME)
 
     log.info('{} inited.'.format(__name__))

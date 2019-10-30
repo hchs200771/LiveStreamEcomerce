@@ -35,7 +35,7 @@ def after_request(response):
 
 @util.log_scope(log)
 def init(config_obj):
-    ec_model.init(createdb=False)
+    ec_model.init()
 
     flask_app.config.from_object(config_obj)
     if app_config.CONFIG.DEBUG:
