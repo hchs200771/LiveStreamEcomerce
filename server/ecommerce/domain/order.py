@@ -73,7 +73,15 @@ def find(page_number=1, items_per_page=25):
 
         product_collection = []
         for q in list(op_query):
-            product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
+            p_info = {
+                'id': q.product.id,
+                'name': q.product.name,
+                'quantity': q.quantity,
+                'image': q.product.image,
+                'original_price': q.product.original_price,
+                'special_price': q.product.special_price
+            }
+            product_collection.append(p_info)
 
         item = {}
         item['id'] = order.id
@@ -102,7 +110,15 @@ def find_one(order_id):
 
     product_collection = []
     for q in list(op_query):
-        product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
+        p_info = {
+            'id': q.product.id,
+            'name': q.product.name,
+            'quantity': q.quantity,
+            'image': q.product.image,
+            'original_price': q.product.original_price,
+            'special_price': q.product.special_price
+        }
+        product_collection.append(p_info)
 
     item = {}
     item['id'] = order.id
