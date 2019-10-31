@@ -51,6 +51,10 @@ a {
   }
   .swiper-pagination {
     position: unset;
+    margin-top: 25px;
+    .swiper-pagination-bullet-active {
+      background-color: $basic-red;
+    }
   }
 }
 

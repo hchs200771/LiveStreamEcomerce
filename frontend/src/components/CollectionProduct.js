@@ -1,19 +1,25 @@
 import React from 'react';
-import '../assets/scss/product.scss'
+import '../assets/scss/collection_product.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CollectionProduct = (props) => {
   const {
-    imgUrl,
+    image,
     name,
     price,
     originPrice,
-    productHandle,
+    id,
   } = props;
   return (
     <div className="product swiper-slide">
       <div className="product_image">
-        <a href={productHandle}><img src={imgUrl} /></a>
+        <img src={image} />
+        <a href={'/products/' + id}>
+          <span>
+            <FontAwesomeIcon icon="search" />
+            查看商品
+          </span>
+        </a>
       </div>
       <div className="caption">
         <div className="product_title">
@@ -23,8 +29,8 @@ const CollectionProduct = (props) => {
           <b className="price">特價 ${price}</b>
           <span className="origin_price">原價 ${originPrice}</span>
         </div>
-        <div class="product_btn">
-          <button class="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+        <div className="product_btn">
+          <button className="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
         </div>
       </div>
     </div>

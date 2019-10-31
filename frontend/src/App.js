@@ -6,6 +6,7 @@ import {
   faShoppingCart,
   faAngleDoubleRight,
   faCartPlus,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './assets/scss/theme.scss';
@@ -14,11 +15,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AllCollections from './views/AllCollections';
 import Collection from './views/Collection';
+import Product from './views/Product';
 
 library.add(
   faShoppingCart,
   faAngleDoubleRight,
-  faCartPlus
+  faCartPlus,
+  faSearch,
 );
 
 function App() {
@@ -29,6 +32,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={AllCollections} />
           <Route path="/collection/:id" component={Collection} />
+          <Route path="/products/:id" component={Product} />
         </Switch>
         <Footer />
       </div>
