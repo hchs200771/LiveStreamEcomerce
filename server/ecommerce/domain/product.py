@@ -8,12 +8,13 @@ log = logging.getLogger(__name__)
 
 
 @util.log_scope(log)
-def create(name, image, price, brief='', description='', category_id_collection=[]):
+def create(name, image, original_price, special_price=None, brief='', description='', category_id_collection=[]):
     with database_proxy.atomic():
         product = Product.create(
             name=name,
             image=image,
-            price=price,
+            original_price=original_price,
+            special_price=special_price,
             brief=brief,
             description=description,
             created_date=util.current_time()
@@ -51,7 +52,8 @@ def find(page_number=1, items_per_page=25):
         item['brief'] = product.brief
         item['description'] = product.description
         item['image'] = product.image
-        item['price'] = product.price
+        item['original_price'] = product.original_price
+        item['special_price'] = product.special_price
         item['category_collection'] = category_collection
         result.append(item)
 
@@ -77,14 +79,15 @@ def find_one(product_id):
     item['brief'] = product.brief
     item['description'] = product.description
     item['image'] = product.image
-    item['price'] = product.price
+    item['original_price'] = product.original_price
+    item['special_price'] = product.special_price
     item['category_collection'] = category_collection
 
     return item
 
 
 @util.log_scope(log)
-def do_update(product_id, name='', image='', price=0, brief='', description='', category_id_collection=[]):
+def do_update(product_id, name='', image='', original_price=0, special_price=0, brief='', description='', category_id_collection=[]):
     try:
         product = Product.get(Product.id == product_id)
     except DoesNotExist:
@@ -95,8 +98,10 @@ def do_update(product_id, name='', image='', price=0, brief='', description='', 
             product.name = name
         if image:
             product.image = image
-        if price:
-            product.price = price
+        if original_price:
+            product.original_price = original_price
+        if special_price:
+            product.special_price = special_price
         if brief:
             product.brief = brief
         if description:
