@@ -26,6 +26,7 @@ product_with_all = api.model('product_with_all', {
     'brief': fields.String(description='product brief', example='a car'),
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
-    'price': fields.Integer(required=True, description='product price', example=999),
+    'original_price': fields.Integer(required=True, description='product original price', example=999),
+    'special_price': fields.Integer(description='product special price', example=999),
     'category_collection': fields.List(fields.Nested(resource_common, allow_null=True))
 })

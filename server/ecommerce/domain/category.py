@@ -78,7 +78,8 @@ def find_children(category_id, page_number=1, items_per_page=25):
         item['brief'] = q.product.brief
         item['description'] = q.product.description
         item['image'] = q.product.image
-        item['price'] = q.product.price
+        item['original_price'] = q.product.original_price
+        item['special_price'] = q.product.special_price
         item['category_collection'] = category_collection
         result.append(item)
 
