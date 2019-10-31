@@ -8,6 +8,7 @@ import {
   faCartPlus,
   faSearch,
   faChevronRight,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './assets/scss/theme.scss';
@@ -25,6 +26,7 @@ library.add(
   faCartPlus,
   faSearch,
   faChevronRight,
+  faArrowRight,
 );
 
 function App() {
