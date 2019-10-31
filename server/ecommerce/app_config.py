@@ -7,7 +7,7 @@ class Config:
     SWAGGER_UI_DOC_EXPANSION = 'list'
     FLASK_ADMIN_SWATCH = 'cerulean'
     SERVER_HOST = '0.0.0.0'
-    SERVER_PORT = 8000
+    SERVER_PORT = 5604
 
     POSTGRES_DBNAME = 'postgres'
     POSTGRES_HOST = SERVER_HOST
