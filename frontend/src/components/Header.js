@@ -9,7 +9,7 @@ const Header = () => {
         <div className="logo"><a href="/">LOGO</a></div>
         <div className="tool_nav">
           <div className="cart">
-            <a href="#">
+            <a href="/cart">
               <FontAwesomeIcon icon="shopping-cart" />
               <span>0</span>
             </a>

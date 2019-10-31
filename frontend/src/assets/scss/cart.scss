@@ -1,0 +1,143 @@
+@import 'color.scss';
+
+#cart {
+  .cart_head {
+    background: $dark-blue;
+    padding: 22px 0;
+    .row {
+      justify-content: space-between;
+      align-items: center;
+    }
+    h2, button {
+      color: #fff;
+    }
+    h2 {
+      font-size: 20px;
+      svg {
+        color: #fff;
+        opacity: .4;
+        margin-left: 10px;
+        font-size: 18px;
+      }
+    }
+    button {
+      background: none;
+      border: 1px solid $btn-yellow;
+      padding: 3px 0;
+      text-align: center;
+      width: 122px;
+      transition: all .3s;
+      &:hover {
+        background: $btn-yellow;
+      }
+    }
+  }
+  .cart_body {
+    min-height: 816px;
+    .row {    
+      margin-top: 50px;
+    }
+  }
+  .table {
+    .content {
+      display: flex;
+      >div {
+        &:not(:last-child) {
+          border-right: 4px solid $body-gray;
+        }
+      }
+    }
+    .items {
+      width: 54%;
+    }
+    .quantity, .price, .total {
+      width: 18%;
+    }
+    .table_head {
+      background: $dark-blue2;
+      color: #fff;
+      .content {
+        >div {
+          padding: 3px 0 3px 18px;
+          &:last-child {
+            text-align: right;
+            padding: 3px 18px 3px 0;
+          }
+        }
+      }
+    }
+    .table_body {
+      .content {
+        padding: 30px 0;
+        border-bottom: 2px solid #ebebeb;
+        >div {
+          &:not(.items) {
+            text-align: center;
+          }
+        }
+        .items {
+          display: flex;
+          justify-content: space-between;
+          .product_image {
+            width: 15%;
+          }
+          h2 {
+            width: 80%;
+            font-size: 18px;
+            line-height: 1.5;
+            a {
+              color: $title-gray;
+            }
+          }
+        }
+        .quantity {
+          .block {
+            width: 70%;
+            margin: 0 auto;
+            .control {
+              width: 100%;
+              display: flex;
+              margin-bottom: 15px;
+              * { color: #888; }
+              button {
+                border: 1px solid #ccc;
+                &.disabled {
+                  opacity: .4;
+                }
+                &.dec {
+                  border-radius: 4px 0 0 4px;
+                }
+                &.inc {
+                  border-radius: 0 4px 4px 0;
+                }
+              }
+              input {
+                border: solid #ccc;
+                border-width: 1px 0;
+                min-width: 0;
+                text-align: center;
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
+            .remove {
+              border: none;
+              background: none;
+              color: $basic-red;
+              opacity: .7;
+              font-size: 13px;
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+        .price, .total {
+          font-weight: bold;
+          color: $dark-blue;
+        }
+      }
+    }
+  }
+}
