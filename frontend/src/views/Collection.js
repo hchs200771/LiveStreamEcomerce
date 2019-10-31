@@ -112,9 +112,8 @@ const Collection = (props) => {
   })
   const products = CollectionData.map(product => {
     return (
-      <div className="col-lg-4 col-md-6">
+      <div className="col-lg-4 col-md-6" key={product.id}>
         <CollectionProduct
-          key={product.id}
           image={product.image}
           name={product.name}
           price={product.price}
