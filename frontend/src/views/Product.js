@@ -9,7 +9,7 @@ const productData = {
   id: 2,
   name: "英雄聯盟LOL 吉茵珂絲公仔 暴走蘿莉大炮戰鬥版大號模型",
   brief: "超人氣角色 吉茵珂絲公仔 數量有限要買要快喔~",
-  description: "尺寸:26CM<br /><br />材質：PVC<br />包裝方式：彩盒包裝<br />交期為七個工作日  下單前請參考 賣場簡介<br />圖片為官方圖片，僅供参考，請以實物為準。<br />PVC模型等商品屬於工廠大量製造之商品，如有輕微溢色、輕微掉漆等小瑕疵，<br />皆屬於正常狀況。不接受以此為理由的退換貨，對質料有強烈要求者，建議前往實體店面選購您心目中理想的喜愛的商品。",
+  description: "尺寸:26CM<br /><br />材質：PVC<br /><br />包裝方式：彩盒包裝<br /><br />交期為七個工作日  下單前請參考 賣場簡介<br /><br />圖片為官方圖片，僅供参考，請以實物為準。<br /><br />PVC模型等商品屬於工廠大量製造之商品，如有輕微溢色、輕微掉漆等小瑕疵，<br /><br />皆屬於正常狀況。不接受以此為理由的退換貨，對質料有強烈要求者，建議前往實體店面選購您心目中理想的喜愛的商品。",
   image: "http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg",
   category_collection: [
     {
@@ -106,22 +106,21 @@ const swiperProducts = related_products.map((swiperProduct) => {
 const params = {
   slidesPerView: 4,
   spaceBetween: 16,
-  pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-  },
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
 }
 
+const product_categories = category_collection.map(product_category => {
+  return <a href={'/collection/' + product_category.id}>{product_category.name}</a>
+});
+
 const Product = () => {
   return (
     <div id="product">
       <div className="container">
-        <div className="row">
+        <div className="row main_row">
           <div className="product_image col-md-6">
             <img src={image} />
           </div>
@@ -131,6 +130,9 @@ const Product = () => {
             </div>
             <div className="product_brief">
               <p>{brief}</p>
+            </div>
+            <div className="product_categories">
+              {product_categories}
             </div>
             <div className="product_price row">
               <div className="onsale">
@@ -152,7 +154,7 @@ const Product = () => {
             <h3>商品介紹</h3>
           </div>
           <div className="content">
-            <p>{description}</p>
+            <p dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </div>
         <div className="related_products">

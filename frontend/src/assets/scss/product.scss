@@ -10,6 +10,9 @@
     position: relative;
     padding-left: 10px;
   }
+  .main_row {
+    padding-bottom: 50px;
+  }
   .product_info {
     .product_title {
       h1 {
@@ -22,11 +25,24 @@
       p {
         color: $title-gray;
         font-size: 18px;
-        margin-bottom: 45px;
+        margin: 0;
+        margin-bottom: 5px;
+      }
+    }
+    .product_categories {
+      a {
+        display: inline-block;
+        font-size: 13px;
+        color: $basic-red;
+        &:not(:last-child) {
+          &:after {
+            content: "、";
+          }
+        }
       }
     }
     .product_price {
-      margin: 0;
+      margin: 45px 0 0;
       align-items: flex-end;
       * {
         display: block;
@@ -82,14 +98,20 @@
   }
   .product_description {
     margin-top: 38px;
-    border-bottom: 1px solid $bright-gray;
-    margin-bottom: 50px;
-    padding-bottom: 15px;
+    border: solid $bright-gray;
+    border-width: 1px 0;
+    margin-bottom: 40px;
+    padding: 35px 0;
     .content {
       p {
         font-size: 16px;
         color: $title-gray;
       }
+    }
+  }
+  .related_products {
+    .swiper-container {
+      padding-bottom: 10px;
     }
   }
 }
