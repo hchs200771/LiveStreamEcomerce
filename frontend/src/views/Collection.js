@@ -25,7 +25,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
+    image: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
     productHandle: '000',
     category_collection: [
       {
@@ -39,7 +39,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾2',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
+    image: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
     productHandle: '001',
     category_collection: [
       {
@@ -53,7 +53,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾3',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg',
+    image: 'http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg',
     productHandle: '002',
     category_collection: [
       {
@@ -67,7 +67,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾4',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
+    image: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
     productHandle: '003',
     category_collection: [
       {
@@ -81,7 +81,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾5',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
+    image: 'https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1',
     productHandle: '004',
     category_collection: [
       {
@@ -95,7 +95,7 @@ const CollectionData = [
     name: '英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾6',
     price: 1000,
     originPrice: 2000,
-    imgUrl: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
+    image: 'https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg',
     productHandle: '005',
     category_collection: [
       {
@@ -115,7 +115,7 @@ const Collection = (props) => {
       <div className="col-lg-4 col-md-6">
         <CollectionProduct
           key={product.id}
-          imgUrl={product.imgUrl}
+          image={product.image}
           name={product.name}
           price={product.price}
           originPrice={product.originPrice}
