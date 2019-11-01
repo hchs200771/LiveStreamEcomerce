@@ -12,6 +12,7 @@ from ecommerce.api import api_proxy
 from ecommerce.persistence import ec_model
 from shutil import which
 from flask import Flask, Blueprint, request, g
+from flask_cors import CORS
 
 log = logging.getLogger(__name__)
 flask_app = Flask(__name__)
@@ -44,6 +45,7 @@ if app_config.CONFIG.DEBUG:
 blueprint = Blueprint('api', __name__, url_prefix='/api/v1')
 api_proxy.init(blueprint)
 flask_app.register_blueprint(blueprint)
+CORS(flask_app)
 
 
 @flask_app.before_request
