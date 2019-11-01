@@ -12,6 +12,11 @@ a {
     text-decoration: none;
   }
 }
+input, button {
+  &:focus {
+    outline: none;
+  }
+}
 
 .swiper-container {
   position: relative;
