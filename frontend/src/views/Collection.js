@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CollectionProduct from '../components/CollectionProduct'
 import banner from '../assets/img/avengers.jpg'
-import CollectionApi from '../api/CollectionApi'
+import DataApi from '../api/DataApi'
 
 import '../assets/scss/collection.scss'
 
@@ -109,20 +109,27 @@ const CollectionData = [
 
 const Collection = (props) => {
   const [allCollections, setAllCollections] = useState([]);
+  const [collectionData, setCollectionData] = useState([]);
 
   useEffect(() => {
     const getCategories = async () => {
-      const data = await CollectionApi.getCategories()
+      const data = await DataApi.getCategories()
       setAllCollections(data)
     }
     getCategories()
+    
+    const getCategoriesProducts = async () => {
+      const data = await DataApi.getCategoriesProducts(props.match.params.id)
+      setCollectionData(data.products)
+    }
+    getCategoriesProducts()
   }, [props])
 
   const currentCollection = allCollections && allCollections.find(a => {
     return a.id === Number(props.match.params.id)
   })
 
-  const products = CollectionData.map(product => {
+  const products = collectionData.map(product => {
     return (
       <div className="col-lg-4 col-md-6" key={product.id}>
         <CollectionProduct
@@ -135,6 +142,7 @@ const Collection = (props) => {
       </div>
     );
   });
+
   return (
     <div id="collection">
       <div className="container">
