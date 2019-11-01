@@ -33,9 +33,9 @@ const cartsData = [
     special_price: 999,
   },
 ];
-const cartRows = cartsData.map(cartRow => {
+const cartRows = cartsData.map((cartRow, index) => {
   return (
-    <div className="content">
+    <div className="content" key={index}>
       <div className="items">
         <div className="product_image">
           <a href={"/products/" + cartRow.id}>
@@ -136,15 +136,12 @@ const MyCart = () => {
                     <b>小計：</b>$6993
                   </div>
                   <div className="subtotal">
-                    <b>小計：</b>$0
-                  </div>
-                  <div className="subtotal">
-                    <b>折扣：</b>
+                    <b>運費：</b>$30
                   </div>
                 </div>
                 <div className="lower_block">
                   <div className="the_total">
-                    <b>合計：</b>$6993
+                    <b>合計：</b>$7023
                   </div>
                 </div>
               </div>
