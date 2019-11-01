@@ -1,40 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Swiper from 'react-id-swiper';
 import CollectionProduct from '../components/CollectionProduct';
+import DataApi from '../api/DataApi'
 import '../assets/scss/product.scss'
 import { AppContext } from '../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const productData = {
-  id: 2,
-  name: "英雄聯盟LOL 吉茵珂絲公仔 暴走蘿莉大炮戰鬥版大號模型",
-  brief: "超人氣角色 吉茵珂絲公仔 數量有限要買要快喔~",
-  description: "尺寸:26CM<br /><br />材質：PVC<br /><br />包裝方式：彩盒包裝<br /><br />交期為七個工作日  下單前請參考 賣場簡介<br /><br />圖片為官方圖片，僅供参考，請以實物為準。<br /><br />PVC模型等商品屬於工廠大量製造之商品，如有輕微溢色、輕微掉漆等小瑕疵，<br /><br />皆屬於正常狀況。不接受以此為理由的退換貨，對質料有強烈要求者，建議前往實體店面選購您心目中理想的喜愛的商品。",
-  image: "http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg",
-  category_collection: [
-    {
-      id: 1,
-      name: "英雄聯盟",
-    },
-    {
-      id: 2,
-      name: "熱門公仔",
-    },
-  ],
-  price: "999",
-  ori_price: "1,499",
-};
-
-const {
-  id,
-  name,
-  brief,
-  description,
-  image,
-  category_collection,
-  price,
-  ori_price,
-} = productData;
 
 const current_cate_pd_1 = [
   {
@@ -86,23 +57,21 @@ const current_cate_pd_2 = [
     price: 999
   },
 ];
-productData.category_collection.forEach(()=> {
 
-});
 const related_products = current_cate_pd_1.concat(current_cate_pd_2);
 
-const swiperProducts = related_products.map((swiperProduct) => {
-  return (
-    <CollectionProduct
-      key={swiperProduct.id}
-      image={swiperProduct.image}
-      name={swiperProduct.name}
-      price={swiperProduct.price}
-      originPrice={swiperProduct.originPrice}
-      id={swiperProduct.id}
-    />
-  );
-});
+// const swiperProducts = related_products.map((swiperProduct) => {
+//   return (
+//     <CollectionProduct
+//       key={swiperProduct.id}
+//       image={swiperProduct.image}
+//       name={swiperProduct.name}
+//       price={swiperProduct.price}
+//       originPrice={swiperProduct.originPrice}
+//       id={swiperProduct.id}
+//     />
+//   );
+// });
 const params = {
   slidesPerView: 4,
   spaceBetween: 16,
@@ -112,26 +81,59 @@ const params = {
   },
 }
 
-const product_categories = category_collection.map(product_category => {
-  return <a href={'/collection/' + product_category.id}>{product_category.name}</a>
-});
-
-const Product = () => {
+const Product = (props) => {
   const { addCart } = useContext(AppContext);
+  const [productData, setProductData] = useState(null);
+  const [relatedProductsData, setRelatedProductsData] = useState([]);
+  useEffect(() => {
+    const getProduct =  async() => {
+      const data = await DataApi.getProduct(props.match.params.id);
+      let relatedProductsArray = [];
+      data.category_collection.forEach(async (a) => {
+        const relatedData = await DataApi.getCategoriesProducts(a.id);
+        relatedProductsArray = relatedProductsArray.concat(relatedData.products);
+        // console.log(relatedProductsArray)
+        setRelatedProductsData(relatedProductsArray);
+      });
+      setProductData(data);
+    }
+    console.log(relatedProductsData)
+    getProduct();
+  }, [props]);
+  // console.log(productData)
+  useEffect(() => {
+    
+  }, [props]);
 
+  const product_categories = productData && productData.category_collection.map(product_category => {
+    return <a href={'/collection/' + product_category.id} key={product_category.id}>{product_category.name}</a>
+  });
+  
+  const swiperProducts = relatedProductsData.map((swiperProduct) => {
+    return (
+      <CollectionProduct
+        key={swiperProduct.id}
+        image={swiperProduct.image}
+        name={swiperProduct.name}
+        price={swiperProduct.special_price}
+        originPrice={swiperProduct.original_price}
+        id={swiperProduct.id}
+      />
+    );
+  });
   return (
     <div id="product">
       <div className="container">
         <div className="row main_row">
           <div className="product_image col-md-6">
-            <img src={image} />
+            <img src={productData && productData.image} />
           </div>
           <div className="product_info col-md-6">
             <div className="product_title">
-              <h1>{name}</h1>
+              <h1>{productData && productData.name}</h1>
             </div>
             <div className="product_brief">
-              <p>{brief}</p>
+              <p>{productData && productData.brief}</p>
             </div>
             <div className="product_categories">
               {product_categories}
@@ -139,14 +141,14 @@ const Product = () => {
             <div className="product_price row">
               <div className="onsale">
                 <span>特價</span>
-                <b>NT ${price}</b>
+                <b>NT ${productData && productData.special_price}</b>
               </div>
               <div className="ori_price">
-                <del>原價 ${ori_price}</del>
+                <del>原價 ${productData && productData.original_price}</del>
               </div>
             </div>
             <div className="product_btn">
-              <button className="add_to_cart" onClick={() => addCart({id, name, image, price, ori_price})}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+              <button className="add_to_cart" onClick={() => addCart(productData)}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
               <button className="checkout_now">直接購買</button>
             </div>
           </div>
@@ -156,7 +158,7 @@ const Product = () => {
             <h3>商品介紹</h3>
           </div>
           <div className="content">
-            <p dangerouslySetInnerHTML={{ __html: description }} />
+            <p dangerouslySetInnerHTML={{ __html: productData && productData.description }} />
           </div>
         </div>
         <div className="related_products">

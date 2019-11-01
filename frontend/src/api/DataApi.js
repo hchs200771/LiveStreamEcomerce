@@ -10,4 +10,10 @@ export default {
   getAllCategoriesProducts() {
     return api.execute('get', `/categories?with_product=1`);
   },
+  getProduct(id) {
+    return api.execute('get', `/products/${id}`);
+  },
+  // getRelatedProducts(id) {
+  //   return api.execute('get', `/products/${id}`);
+  // },
 }
