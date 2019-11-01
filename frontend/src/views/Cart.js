@@ -90,29 +90,63 @@ const MyCart = () => {
             </div>
           </div>
           <div className="row">
-            <div className="buyers_form col-md-9 col-sm-12">
-              123
-            </div>
-            <div className="subtotals col-md-3 col-sm-12">
-              <div className="upper_block">
-                <div className="subtotal">
-                  <b>小計：</b>$6993
+            <div className="col-md-8 col-sm-12">
+              <div className="buyers_form">
+                <h3>收件者資料：</h3>
+                <div className="name">
+                  <label>姓名：</label>
+                  <input type="text" />
                 </div>
-                <div className="subtotal">
-                  <b>小計：</b>$0
+                <div className="phone">
+                  <label>電話：</label>
+                  <input type="text" />
                 </div>
-                <div className="subtotal">
-                  <b>折扣：</b>
+                <div className="email">
+                  <label>E-mail：</label>
+                  <input type="email" />
                 </div>
-              </div>
-              <div className="lower_block">
-                <div className="the_total">
-                  <b>合計：</b>$6993
+                <div className="address">
+                  <label>地址：</label>
+                  <input type="text" />
+                </div>
+                <div className="pay">
+                  <div>
+                    <label>信用卡：</label>
+                    <input type="radio" />
+                  </div>
+                  <div>
+                    <label>ATM：</label>
+                    <input type="radio" />
+                  </div>
+                  <div>
+                    <label>貨到付款：</label>
+                    <input type="radio" />
+                  </div>
                 </div>
                 <button className="checkout">
                   <FontAwesomeIcon icon="arrow-right" />
                   馬上結帳
                 </button>
+              </div>
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <div className="subtotals">
+                <div className="upper_block">
+                  <div className="subtotal">
+                    <b>小計：</b>$6993
+                  </div>
+                  <div className="subtotal">
+                    <b>小計：</b>$0
+                  </div>
+                  <div className="subtotal">
+                    <b>折扣：</b>
+                  </div>
+                </div>
+                <div className="lower_block">
+                  <div className="the_total">
+                    <b>合計：</b>$6993
+                  </div>
+                </div>
               </div>
             </div>
           </div>
