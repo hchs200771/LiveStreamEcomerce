@@ -45,6 +45,7 @@ if app_config.CONFIG.DEBUG:
 blueprint = Blueprint('api', __name__, url_prefix='/api/v1')
 api_proxy.init(blueprint)
 flask_app.register_blueprint(blueprint)
+CORS(flask_app)
 
 
 @flask_app.before_request
@@ -75,7 +76,6 @@ if __name__ == '__main__':
             flask_app.run()
         else:
             flask_app.run(host=app_config.CONFIG.SERVER_HOST, port=app_config.CONFIG.SERVER_PORT)
-        CORS(flask_app)
     except Exception:
         import traceback
         traceback.print_exc()
