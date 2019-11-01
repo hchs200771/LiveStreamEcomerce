@@ -68,7 +68,7 @@ const current_cate_pd_1 = [
       },
     ],
     price: 999
-  }, 
+  },
 ];
 const current_cate_pd_2 = [
   {
@@ -87,7 +87,7 @@ const current_cate_pd_2 = [
   },
 ];
 productData.category_collection.forEach(()=> {
-  
+
 });
 const related_products = current_cate_pd_1.concat(current_cate_pd_2);
 
@@ -110,6 +110,27 @@ const params = {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+}
+
+const addCart = () => {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // check exist
+  const alreadyExistProduct = cart.find(e => e.id === id);
+  if (alreadyExistProduct) {
+    cart.forEach(data => {
+      data.quantity = alreadyExistProduct.quantity + 1
+    })
+  } else {
+    cart.push({
+      id,
+      name,
+      image,
+      quantity: 1,
+      special_price: price,
+      original_price: ori_price,
+    })
+  }
+  localStorage.setItem('cart', JSON.stringify(cart))
 }
 
 const product_categories = category_collection.map(product_category => {
@@ -144,7 +165,7 @@ const Product = () => {
               </div>
             </div>
             <div className="product_btn">
-              <button className="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+              <button className="add_to_cart" onClick={addCart}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
               <button className="checkout_now">直接購買</button>
             </div>
           </div>
