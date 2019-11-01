@@ -6,81 +6,6 @@ import '../assets/scss/product.scss'
 import { AppContext } from '../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const current_cate_pd_1 = [
-  {
-    id: 1,
-    name: "英雄聯盟 世界大賽官方正版公仔 脈衝火焰 伊澤瑞爾",
-    brief: "EZREAL",
-    description: "ezreal",
-    image: "https://cf.shopee.tw/file/ad118a574093b7d6ccbe469bfd0ec3a1",
-    category_collection: [
-      {
-        id: 1,
-        name: "英雄聯盟"
-      }
-    ],
-    price: 999
-  },
-  {
-    id: 2,
-    name: "英雄聯盟LOL 吉茵珂絲公仔 暴走蘿莉大炮戰鬥版大號模型",
-    brief: "JINX",
-    description: "jinx",
-    image: "http://gw3.alicdn.com/bao/uploaded/i3/TB1vBQYKpXXXXX.XVXXXXXXXXXX_!!0-item_pic.jpg",
-    category_collection: [
-      {
-        id: 1,
-        name: "英雄聯盟"
-      },
-      {
-        id: 2,
-        name: "熱門公仔"
-      },
-    ],
-    price: 999
-  },
-];
-const current_cate_pd_2 = [
-  {
-    id: 3,
-    name: "英雄聯盟 世界大賽官方正版公仔 艾希",
-    brief: "Ashe",
-    description: "ashe",
-    image: "https://img.ruten.com.tw/s2/3/74/c8/21822100524232_188.jpg",
-    category_collection: [
-      {
-        id: 1,
-        name: "熱門公仔"
-      }
-    ],
-    price: 999
-  },
-];
-
-const related_products = current_cate_pd_1.concat(current_cate_pd_2);
-
-// const swiperProducts = related_products.map((swiperProduct) => {
-//   return (
-//     <CollectionProduct
-//       key={swiperProduct.id}
-//       image={swiperProduct.image}
-//       name={swiperProduct.name}
-//       price={swiperProduct.price}
-//       originPrice={swiperProduct.originPrice}
-//       id={swiperProduct.id}
-//     />
-//   );
-// });
-const params = {
-  slidesPerView: 4,
-  spaceBetween: 16,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-}
-
 const Product = (props) => {
   const { addCart } = useContext(AppContext);
   const [productData, setProductData] = useState(null);
@@ -92,23 +17,17 @@ const Product = (props) => {
       data.category_collection.forEach(async (a) => {
         const relatedData = await DataApi.getCategoriesProducts(a.id);
         relatedProductsArray = relatedProductsArray.concat(relatedData.products);
-        // console.log(relatedProductsArray)
         setRelatedProductsData(relatedProductsArray);
       });
       setProductData(data);
     }
-    console.log(relatedProductsData)
     getProduct();
-  }, [props]);
-  // console.log(productData)
-  useEffect(() => {
-    
   }, [props]);
 
   const product_categories = productData && productData.category_collection.map(product_category => {
     return <a href={'/collection/' + product_category.id} key={product_category.id}>{product_category.name}</a>
   });
-  
+
   const swiperProducts = relatedProductsData.map((swiperProduct) => {
     return (
       <CollectionProduct
@@ -121,6 +40,15 @@ const Product = (props) => {
       />
     );
   });
+  const params = {
+    slidesPerView: 4,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  }
+
   return (
     <div id="product">
       <div className="container">
@@ -164,7 +92,7 @@ const Product = (props) => {
         <div className="related_products">
           <h3>相關商品</h3>
           <div className="content">
-            <Swiper {...params}>
+            <Swiper {...params} shouldSwiperUpdate>
               {swiperProducts}
             </Swiper>
           </div>
