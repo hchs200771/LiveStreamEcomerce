@@ -7,7 +7,7 @@ import '../assets/scss/collection.scss'
 
 const Collection = (props) => {
   const [allCollections, setAllCollections] = useState([]);
-  const [collectionData, setCollectionData] = useState([]);
+  const [collectionData, setCollectionData] = useState(null);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -18,23 +18,20 @@ const Collection = (props) => {
     
     const getCategoriesProducts = async () => {
       const data = await DataApi.getCategoriesProducts(props.match.params.id)
-      setCollectionData(data.products)
+      console.log(data)
+      setCollectionData(data)
     }
     getCategoriesProducts()
   }, [props])
 
-  const currentCollection = allCollections && allCollections.find(a => {
-    return a.id === Number(props.match.params.id)
-  })
-
-  const products = collectionData.map(product => {
+  const products = collectionData && collectionData.products.map(product => {
     return (
       <div className="col-lg-4 col-md-6" key={product.id}>
         <CollectionProduct
           image={product.image}
           name={product.name}
-          price={product.price}
-          originPrice={product.originPrice}
+          price={product.special_price}
+          originPrice={product.original_price}
           id={product.id}
         />
       </div>
@@ -55,7 +52,7 @@ const Collection = (props) => {
                 allCollections && allCollections.map( allCollection => {
                   return (
                     <li key={allCollection.id}>
-                      <a className={allCollection.id == currentCollection.id ? 'active': ''} href={allCollection.id}>{allCollection.name}</a>
+                      <a className={collectionData && allCollection.id == collectionData.id ? 'active': ''} href={allCollection.id}>{allCollection.name}</a>
                     </li>
                   )
                 })
@@ -63,7 +60,7 @@ const Collection = (props) => {
             </ul>
           </div>
           <div className="col-lg-9 col-md-8">
-            <div className="head">{currentCollection && currentCollection.name}</div>
+            <div className="head">{collectionData && collectionData.name}</div>
             <div className="products row">
               {products}
             </div>
