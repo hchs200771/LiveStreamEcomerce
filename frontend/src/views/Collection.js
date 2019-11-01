@@ -1,9 +1,18 @@
 import React from 'react';
 import CollectionProduct from '../components/CollectionProduct'
+import axios from 'axios';
 import banner from '../assets/img/avengers.jpg'
 
 import '../assets/scss/collection.scss'
 
+const test = () => {
+  axios
+    .get("https://live-ecommerce-server.herokuapp.com/api/v1/categories")
+    .then(data => {
+      console.log(data);
+    });
+}
+test();
 const AllCollections = [
   {
     id: 1,
