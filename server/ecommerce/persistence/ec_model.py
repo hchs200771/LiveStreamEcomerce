@@ -34,7 +34,8 @@ class Product(BaseModel):
     brief = CharField(null=True)
     description = CharField(null=True)
     image = CharField()
-    price = IntegerField(index=True)
+    original_price = IntegerField(index=True)
+    special_price = IntegerField(null=True, index=True)
     created_date = DateTimeField(index=True, formats=['%Y-%m-%d %H:%M:%S'])
     modified_date = DateTimeField(null=True, index=True, formats=['%Y-%m-%d %H:%M:%S'])
 

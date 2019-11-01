@@ -20,6 +20,8 @@ import Collection from './views/Collection';
 import Product from './views/Product';
 import MyCart from './views/Cart';
 
+import AppContextProvider from './context/AppContext';
+
 library.add(
   faShoppingCart,
   faAngleDoubleRight,
@@ -33,14 +35,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/" component={AllCollections} />
-          <Route path="/collection/:id" component={Collection} />
-          <Route path="/products/:id" component={Product} />
-          <Route path="/cart" component={MyCart} />
-        </Switch>
-        <Footer />
+        <AppContextProvider>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={AllCollections} />
+            <Route path="/collection/:id" component={Collection} />
+            <Route path="/products/:id" component={Product} />
+          </Switch>
+          <Footer />
+        </AppContextProvider>
       </div>
     </BrowserRouter>
   );

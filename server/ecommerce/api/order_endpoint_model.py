@@ -8,7 +8,10 @@ from ecommerce.domain import order as OrderDO
 query_product = api.model('query_product', {
     'id': fields.Integer(required=True, description='product id', example=1),
     'name': fields.String(required=True, description='product name'),
-    'quantity': fields.Integer(required=True, description='quantity of order', example=2)
+    'quantity': fields.Integer(required=True, description='quantity of order', example=2),
+    'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
+    'original_price': fields.Integer(required=True, description='product original price', example=999),
+    'special_price': fields.Integer(description='product special price', example=999)
 })
 
 order_filter = abstract_model.page_filter.copy()

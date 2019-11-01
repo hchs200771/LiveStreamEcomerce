@@ -35,7 +35,11 @@ def create(cust_name, cust_phone, cust_email, cust_addr, payment_type, product_c
         except DoesNotExist:
             raise DataValidationError('product id: {}'.format(order_product['id']))
 
-        total += product.price * order_product['quantity']
+        if product.special_price:
+            price = product.special_price
+        else:
+            price = product.original_price
+        total += price * order_product['quantity']
         product_list.append({'product': product, 'quantity': order_product['quantity']})
 
     with database_proxy.atomic():
@@ -69,7 +73,15 @@ def find(page_number=1, items_per_page=25):
 
         product_collection = []
         for q in list(op_query):
-            product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
+            p_info = {
+                'id': q.product.id,
+                'name': q.product.name,
+                'quantity': q.quantity,
+                'image': q.product.image,
+                'original_price': q.product.original_price,
+                'special_price': q.product.special_price
+            }
+            product_collection.append(p_info)
 
         item = {}
         item['id'] = order.id
@@ -98,7 +110,15 @@ def find_one(order_id):
 
     product_collection = []
     for q in list(op_query):
-        product_collection.append({'id': q.product.id, 'name': q.product.name, 'quantity': q.quantity})
+        p_info = {
+            'id': q.product.id,
+            'name': q.product.name,
+            'quantity': q.quantity,
+            'image': q.product.image,
+            'original_price': q.product.original_price,
+            'special_price': q.product.special_price
+        }
+        product_collection.append(p_info)
 
     item = {}
     item['id'] = order.id
@@ -158,7 +178,11 @@ def do_update(order_id, cust_name='', cust_phone='', cust_email='', cust_addr=''
                 except DoesNotExist:
                     raise DataValidationError('product id: {}'.format(order_product['id']))
 
-                total += product.price * order_product['quantity']
+                if product.special_price:
+                    price = product.special_price
+                else:
+                    price = product.original_price
+                total += price * order_product['quantity']
                 Order_Product.create(order=order, product=product, quantity=order_product['quantity'])
 
             order.total = total

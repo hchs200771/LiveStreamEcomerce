@@ -20,7 +20,7 @@ class Collection(Resource):
         return None, 204, {'x-result-count': CategoryDO.count()}
 
     @api.expect(model.category_filter, validate=True)
-    @api.marshal_list_with(model.category_query)
+    @api.marshal_list_with(model.category_query, skip_none=True)
     def get(self):
         '''
         Get categories collection.
@@ -44,13 +44,15 @@ class Collection(Resource):
 @namespace.route('/<int:id>')
 class Item(Resource):
 
-    @api.marshal_with(model.category_query)
+    @api.expect(model.category_item_filter, validate=True)
+    @api.marshal_with(model.category_query, skip_none=True)
     @api.response(404, 'ResourceNotFound')
     def get(self, id):
         '''
         Get a category.
         '''
-        return CategoryDO.find_one(id)
+        args = model.category_item_filter.parse_args(request)
+        return CategoryDO.find_one(id, **args)
 
     @api.response(204, 'Success')
     @api.response(404, 'ResourceNotFound')
