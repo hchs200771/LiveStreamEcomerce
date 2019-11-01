@@ -12,6 +12,7 @@ from ecommerce.api import api_proxy
 from ecommerce.persistence import ec_model
 from shutil import which
 from flask import Flask, Blueprint, request, g
+from flask_cors import CORS
 
 log = logging.getLogger(__name__)
 flask_app = Flask(__name__)
@@ -74,6 +75,7 @@ if __name__ == '__main__':
             flask_app.run()
         else:
             flask_app.run(host=app_config.CONFIG.SERVER_HOST, port=app_config.CONFIG.SERVER_PORT)
+        CORS(flask_app)
     except Exception:
         import traceback
         traceback.print_exc()
