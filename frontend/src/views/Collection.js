@@ -18,7 +18,6 @@ const Collection = (props) => {
     
     const getCategoriesProducts = async () => {
       const data = await DataApi.getCategoriesProducts(props.match.params.id)
-      console.log(data)
       setCollectionData(data)
     }
     getCategoriesProducts()

@@ -7,4 +7,7 @@ export default {
   getCategoriesProducts(id) {
     return api.execute('get', `/categories/${id}?with_product=1`);
   },
+  getAllCategoriesProducts() {
+    return api.execute('get', `/categories?with_product=1`);
+  },
 }
