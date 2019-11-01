@@ -67,12 +67,12 @@ class Item(Resource):
 @namespace.route('/<int:id>/products')
 class Product(Resource):
 
-    @api.expect(model.category_filter, validate=True)
+    @api.expect(model.category_product_filter, validate=True)
     @api.marshal_list_with(model.category_product_query)
     @api.response(404, 'ResourceNotFound')
     def get(self, id):
         '''
         Get all products in this category.
         '''
-        args = model.category_filter.parse_args(request)
+        args = model.category_product_filter.parse_args(request)
         return CategoryDO.find_children(id, **args)

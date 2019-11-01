@@ -10,6 +10,8 @@ category_filter.add_argument('with_product', type=int, default=0, help='with_pro
 category_item_filter = reqparse.RequestParser()
 category_item_filter.add_argument('with_product', type=int, default=0, help='with_product=1 會列出商品')
 
+category_product_filter = abstract_model.page_filter.copy()
+
 category_query = api.model('category_query', {
     'id': fields.Integer(required=True, description='resource id'),
     'name': fields.String(required=True, description='resource name'),
