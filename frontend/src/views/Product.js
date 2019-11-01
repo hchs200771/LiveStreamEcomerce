@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swiper from 'react-id-swiper';
 import CollectionProduct from '../components/CollectionProduct';
 import '../assets/scss/product.scss'
-
+import { AppContext } from '../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const productData = {
@@ -68,7 +68,7 @@ const current_cate_pd_1 = [
       },
     ],
     price: 999
-  }, 
+  },
 ];
 const current_cate_pd_2 = [
   {
@@ -87,7 +87,7 @@ const current_cate_pd_2 = [
   },
 ];
 productData.category_collection.forEach(()=> {
-  
+
 });
 const related_products = current_cate_pd_1.concat(current_cate_pd_2);
 
@@ -117,6 +117,8 @@ const product_categories = category_collection.map(product_category => {
 });
 
 const Product = () => {
+  const { addCart } = useContext(AppContext);
+
   return (
     <div id="product">
       <div className="container">
@@ -144,7 +146,7 @@ const Product = () => {
               </div>
             </div>
             <div className="product_btn">
-              <button className="add_to_cart"><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+              <button className="add_to_cart" onClick={() => addCart({id, name, image, price, ori_price})}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
               <button className="checkout_now">直接購買</button>
             </div>
           </div>

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../assets/scss/header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AppContext } from '../context/AppContext';
 
 const Header = () => {
+  const { cart } = useContext(AppContext);
+
   return (
     <header>
       <div className="container">
@@ -11,7 +14,7 @@ const Header = () => {
           <div className="cart">
             <a href="#">
               <FontAwesomeIcon icon="shopping-cart" />
-              <span>0</span>
+              <span>{cart.length}</span>
             </a>
           </div>
         </div>
