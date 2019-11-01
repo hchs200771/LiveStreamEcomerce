@@ -16,7 +16,8 @@ product_create = api.model('product_create', {
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(required=True, description='product image url', example='https://image_url.jpg'),
     'category_id_collection': fields.List(fields.Integer(description='category id', example=1)),
-    'price': fields.Integer(required=True, description='product price', example=999)
+    'original_price': fields.Integer(required=True, description='product original price', example=999),
+    'special_price': fields.Integer(description='product special price', example=999)
 })
 
 product_reapply = api.model('product_reapply', {
@@ -25,5 +26,6 @@ product_reapply = api.model('product_reapply', {
     'description': fields.String(description='product description', example='This is a car.'),
     'image': fields.String(description='product image url', example='https://image_url.jpg'),
     'category_id_collection': fields.List(fields.Integer(description='category id', example=1)),
-    'price': fields.Integer(description='product price', example=999)
+    'original_price': fields.Integer(description='product original price', example=999),
+    'special_price': fields.Integer(description='product special price', example=999)
 })

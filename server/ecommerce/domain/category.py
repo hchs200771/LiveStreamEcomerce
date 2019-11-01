@@ -18,23 +18,42 @@ def create(name):
 
 
 @util.log_scope(log)
-def find(page_number=1, items_per_page=25):
+def find(page_number=1, items_per_page=25, with_product=0):
     if items_per_page == -1:
         category = Category.select().order_by(Category.id)
     else:
         category = Category.select().order_by(Category.id).paginate(page_number, items_per_page)
 
-    return list(category)
+    if with_product:
+        result = []
+        for c in list(category):
+            item = {}
+            item['id'] = c.id
+            item['name'] = c.name
+            item['products'] = find_children(c.id, items_per_page=-1)
+            result.append(item)
+
+        return result
+    else:
+        return list(category)
 
 
 @util.log_scope(log)
-def find_one(category_id):
+def find_one(category_id, with_product=0):
     try:
         category = Category.get(Category.id == category_id)
     except DoesNotExist:
         raise ResourceNotFound()
 
-    return category
+    if with_product:
+        item = {}
+        item['id'] = category.id
+        item['name'] = category.name
+        item['products'] = find_children(category.id, items_per_page=-1)
+
+        return item
+    else:
+        return category
 
 
 @util.log_scope(log)
@@ -78,7 +97,8 @@ def find_children(category_id, page_number=1, items_per_page=25):
         item['brief'] = q.product.brief
         item['description'] = q.product.description
         item['image'] = q.product.image
-        item['price'] = q.product.price
+        item['original_price'] = q.product.original_price
+        item['special_price'] = q.product.special_price
         item['category_collection'] = category_collection
         result.append(item)
 
