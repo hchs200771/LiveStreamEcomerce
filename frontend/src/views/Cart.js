@@ -4,7 +4,7 @@ import DataApi from '../api/DataApi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AppContext } from '../context/AppContext';
 
-const MyCart = () => {
+const MyCart = (props) => {
   const { cart, IncreaseProductCart, DecreaseProductCart } = useContext(AppContext);
   const [custName, setCustName] = useState('')
   const [custPhone, setCustPhone] = useState('')
@@ -12,7 +12,7 @@ const MyCart = () => {
   const [custAddr, setCustAddr] = useState('')
   const [paymentType, setPaymentType] = useState('')
 
-  const createOrder = async (props) => {
+  const createOrder = async () => {
     const cartData = JSON.parse(localStorage.getItem('cart'))
     const products = cartData.map(p => {
       return {
