@@ -10,4 +10,10 @@ export default {
   getAllCategoriesProducts() {
     return api.execute('get', `/categories?with_product=1`);
   },
+  createOrder(data) {
+    return api.execute('post', '/orders', data)
+  },
+  getOrderInfo(id) {
+    return api.execute('get', `/orders/${id}`)
+  }
 }

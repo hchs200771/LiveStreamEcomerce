@@ -19,6 +19,7 @@ import AllCollections from './views/AllCollections';
 import Collection from './views/Collection';
 import Product from './views/Product';
 import MyCart from './views/Cart';
+import CartDetail from './views/CartDetail';
 
 import AppContextProvider from './context/AppContext';
 
@@ -41,6 +42,8 @@ function App() {
             <Route exact path="/" component={AllCollections} />
             <Route path="/collection/:id" component={Collection} />
             <Route path="/products/:id" component={Product} />
+            <Route path="/cart" component={MyCart} />
+            <Route path="/cartDetail/:id" component={CartDetail} />
           </Switch>
           <Footer />
         </AppContextProvider>

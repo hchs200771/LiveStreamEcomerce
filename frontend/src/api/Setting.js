@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://live-ecommerce-server.herokuapp.com/api/v1'
+  baseURL: 'https://live-ecommerce-server.herokuapp.com/api/v1',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export default {
