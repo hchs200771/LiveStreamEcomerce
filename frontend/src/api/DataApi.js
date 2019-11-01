@@ -16,4 +16,10 @@ export default {
   // getRelatedProducts(id) {
   //   return api.execute('get', `/products/${id}`);
   // },
+  createOrder(data) {
+    return api.execute('post', '/orders', data)
+  },
+  getOrderInfo(id) {
+    return api.execute('get', `/orders/${id}`)
+  }
 }
