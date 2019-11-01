@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swiper from 'react-id-swiper';
 import CollectionProduct from '../components/CollectionProduct';
 import '../assets/scss/product.scss'
-
+import { AppContext } from '../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const productData = {
@@ -112,32 +112,13 @@ const params = {
   },
 }
 
-const addCart = () => {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  // check exist
-  const alreadyExistProduct = cart.find(e => e.id === id);
-  if (alreadyExistProduct) {
-    cart.forEach(data => {
-      data.quantity = alreadyExistProduct.quantity + 1
-    })
-  } else {
-    cart.push({
-      id,
-      name,
-      image,
-      quantity: 1,
-      special_price: price,
-      original_price: ori_price,
-    })
-  }
-  localStorage.setItem('cart', JSON.stringify(cart))
-}
-
 const product_categories = category_collection.map(product_category => {
   return <a href={'/collection/' + product_category.id}>{product_category.name}</a>
 });
 
 const Product = () => {
+  const { addCart } = useContext(AppContext);
+
   return (
     <div id="product">
       <div className="container">
@@ -165,7 +146,7 @@ const Product = () => {
               </div>
             </div>
             <div className="product_btn">
-              <button className="add_to_cart" onClick={addCart}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
+              <button className="add_to_cart" onClick={() => addCart({id, name, image, price, ori_price})}><FontAwesomeIcon icon="cart-plus" />加入購物車</button>
               <button className="checkout_now">直接購買</button>
             </div>
           </div>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../assets/scss/collection_product.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AppContext } from '../context/AppContext';
 
 const CollectionProduct = (props) => {
+  const { addCart } = useContext(AppContext)
   const {
     image,
     name,
@@ -10,27 +12,6 @@ const CollectionProduct = (props) => {
     originPrice,
     id,
   } = props;
-
-  const addCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    // check exist
-    const alreadyExistProduct = cart.find(e => e.id === id);
-    if (alreadyExistProduct) {
-      cart.forEach(data => {
-        data.quantity = alreadyExistProduct.quantity + 1
-      })
-    } else {
-      cart.push({
-        id,
-        name,
-        image,
-        quantity: 1,
-        special_price: price,
-        original_price: originPrice,
-      })
-    }
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }
 
   return (
     <div className="product swiper-slide">
@@ -52,7 +33,7 @@ const CollectionProduct = (props) => {
           <span className="origin_price">原價 ${originPrice}</span>
         </div>
         <div className="product_btn">
-          <button className="add_to_cart" onClick={addCart}>
+          <button className="add_to_cart" onClick={() => addCart({id, name, image, price, originPrice})}>
             <FontAwesomeIcon icon="cart-plus" />
             加入購物車
           </button>
