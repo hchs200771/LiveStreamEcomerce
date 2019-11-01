@@ -1,18 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CollectionProduct from '../components/CollectionProduct'
-import axios from 'axios';
 import banner from '../assets/img/avengers.jpg'
+import CollectionApi from '../api/CollectionApi'
 
 import '../assets/scss/collection.scss'
 
-const test = () => {
-  axios
-    .get("https://live-ecommerce-server.herokuapp.com/api/v1/categories")
-    .then(data => {
-      console.log(data);
-    });
-}
-test();
 const AllCollections = [
   {
     id: 1,
@@ -116,9 +108,20 @@ const CollectionData = [
 ];
 
 const Collection = (props) => {
-  const currentCollection = AllCollections.find(a => {
+  const [allCollections, setAllCollections] = useState([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const data = await CollectionApi.getCategories()
+      setAllCollections(data)
+    }
+    getCategories()
+  }, [props])
+
+  const currentCollection = allCollections && allCollections.find(a => {
     return a.id === Number(props.match.params.id)
   })
+
   const products = CollectionData.map(product => {
     return (
       <div className="col-lg-4 col-md-6" key={product.id}>
@@ -131,7 +134,7 @@ const Collection = (props) => {
         />
       </div>
     );
-  }); 
+  });
   return (
     <div id="collection">
       <div className="container">
@@ -143,10 +146,10 @@ const Collection = (props) => {
             <div className="head">分類選單</div>
             <ul>
               {
-                AllCollections.map( AllCollection => {
+                allCollections && allCollections.map( allCollection => {
                   return (
-                    <li key={AllCollection.id}>
-                      <a className={AllCollection.id == currentCollection.id ? 'active': ''} href={AllCollection.id}>{AllCollection.name}</a>
+                    <li key={allCollection.id}>
+                      <a className={allCollection.id == currentCollection.id ? 'active': ''} href={allCollection.id}>{allCollection.name}</a>
                     </li>
                   )
                 })
@@ -154,7 +157,7 @@ const Collection = (props) => {
             </ul>
           </div>
           <div className="col-lg-9 col-md-8">
-            <div className="head">{currentCollection.name}</div>
+            <div className="head">{currentCollection && currentCollection.name}</div>
             <div className="products row">
               {products}
             </div>
