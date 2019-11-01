@@ -4,6 +4,7 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
   const [cart, setCart] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem('cart')) || [];
@@ -27,12 +28,30 @@ const AppContextProvider = (props) => {
         original_price: originPrice,
       })
     }
-    localStorage.setItem('cart', JSON.stringify(cart))
     setCart(cart)
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
+
+  const IncreaseProductCart = (id) => {
+    const alreadyExistProduct = cart.find(e => e.id === id);
+    cart.forEach(data => {
+      data.quantity = alreadyExistProduct.quantity + 1
+    })
+    setCart(cart)
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
+
+  const DecreaseProductCart = (id) => {
+    const alreadyExistProduct = cart.find(e => e.id === id);
+    cart.forEach(data => {
+      data.quantity = alreadyExistProduct.quantity - 1
+    })
+    setCart(cart)
+    localStorage.setItem('cart', JSON.stringify(cart))
   }
 
   return (
-    <AppContext.Provider value={{ cart, addCart }}>
+    <AppContext.Provider value={{ cart, addCart, IncreaseProductCart, DecreaseProductCart }}>
       {props.children}
     </AppContext.Provider>
   )
