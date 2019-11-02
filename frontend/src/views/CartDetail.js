@@ -19,9 +19,9 @@ const CartDetail = (props) => {
           <img src={order.image} />
           <span className="product_name">{order.name}</span>
         </td>
-        <td>NT${order.original_price}</td>
+        <td>NT${order.special_price}</td>
         <td>{order.quantity}</td>
-        <td>NT${order.original_price * order.quantity}</td>
+        <td>NT${order.special_price * order.quantity}</td>
       </tr>
     )
   })
@@ -33,9 +33,13 @@ const CartDetail = (props) => {
           <div className="col-md-12">
             <div className="header">訂單明細</div>
             <div className="description">謝謝您的購買，以下是您的訂單明細</div>
-            <div className="order_number">
+            <div className="order_number" style={{margin: 0}}>
               訂單編號
-              <span className="number">104123456</span>
+              <span className="number">#{orderInfo && orderInfo.id}</span>
+            </div>
+            <div className="order_number">
+              付款方式
+              <span className="number">{orderInfo && orderInfo.payment_type}</span>
             </div>
             <div className="order_info">
               <table>
@@ -49,10 +53,11 @@ const CartDetail = (props) => {
                 </thead>
                 <tbody>
                   {allOrders}
+                  <tr style={{textAlign: "right"}}><td colSpan="4">運費：30</td></tr>
                 </tbody>
               </table>
               <div className="total_price">
-                NT${orderInfo && orderInfo.total}
+                NT${orderInfo && orderInfo.total + 30}
               </div>
             </div>
             <div className="back_collections" onClick={() => props.history.push('/')}>回商品列表頁</div>
