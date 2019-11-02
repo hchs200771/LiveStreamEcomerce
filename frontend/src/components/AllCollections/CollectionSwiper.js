@@ -12,8 +12,8 @@ const CollectionSwiper = (props) => {
         key={swiperProduct.id}
         image={swiperProduct.image}
         name={swiperProduct.name}
-        price={swiperProduct.price}
-        originPrice={swiperProduct.originPrice}
+        price={swiperProduct.special_price}
+        originPrice={swiperProduct.original_price}
         id={swiperProduct.id}
       />
     );
